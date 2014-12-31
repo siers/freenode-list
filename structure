@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Sorted by chan user count and then,
+# for superior reading(adding a newline in between every 5th line:
+
+sort -rg "-t$(echo -e '\t')" -k2,2 -k1,1 | \
+    awk '{ print $0; if (NR % 5 == 4) { printf "\n" } }'

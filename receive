@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+nick="ijsdataminer$RANDOM"
+
+input() {
+    ( sleep 5; echo :LIST ); cat
+}
+
+kill-children-on-input() {
+    read; pgrep -P $1 | xargs -L1 kill
+}
+
+input | sic -h irc.freenode.net -n $nick | tee list | grep --line-buffered "End of /LIST" | kill-children-on-input $$
