@@ -1,0 +1,4 @@
+list
+*.o
+*.hi
+filter

@@ -1,0 +1,23 @@
+This things downloads the list of channels on irc.freenode.net:
+
+    input | sic -h irc.freenode.net -n $nick | tee list | grep --line-buffered "End of /LIST" | kill-children-on-input $$
+
+Sorts and formats them:
+
+    sort -rg "-t$(echo -e '\t')" -k2,2 -k1,1 | \
+        awk '{ print $0; if (NR % 5 == 4) { printf "\n" } }'
+
+So that you can read it nicely
+
+    #ubuntu	1714	Official Ubuntu Support Channel | IRC Guidelines: http://ubottu.com/y/gl | IRC info: http://ubottu.com/y/irc | Pastes to http://paste.ubuntu.com/ | Download: http://ubottu.com/y/dl | Currently supported: 10.04 LTS (server), 12.04 LTS, 14.04 LTS, 14.10
+    #archlinux	1704	Welcome to Arch Linux World Domination, Inc. <> Read or die: https://bbs.archlinux.org/viewtopic.php?id=57205 <+> pacman 4.2 in [core], don't forget to rebuild/fix/update your aur helper which depends on libalpm (yaourt, cower). Asking questions without reading the topic will get you a kick.
+    ##linux	1673	Forums is back in testing http://forums.linuxassist.net | Channel website: http://www.linuxassist.net | Pastebin: http://paste.linuxassist.net | Spammers or trolls? use !ops <troll's nick> <reason>". | For op assistance, join ##linux-ops | Feel at home and enjoy your stay
+    #debian	1524	bash: /msg dpkg dsa3035 | openssl: /msg dpkg dsa2896 | wheezy released: /msg dpkg squeeze->wheezy | current point release: /msg dpkg 7.7 | NO FLOOD: /msg dpkg paste | /msg bots NOT people | offtopic: #debian-offtopic | testing/unstable: #debian-next (irc.oftc.net)
+
+    #haskell	1467	http://www.haskell.org/ | Paste code/errors: http://lpaste.net/new/haskell | Logs: http://tunes.org/~nef/logs/haskell/?C=M;O=D http://ircbrowse.net/day/haskell/today?mode=recent | http://reddit.com/r/haskell | Administrative issues: #haskell-ops | Hackage status? http://status.haskell.org | http://downloads.haskell.org
+    #docker	1439	Docker: Open platform for distributed applications | http://docker.com | http://github.com/docker/docker | Logged at https://botbot.me/freenode/docker | https://groups.google.com/forum/?fromgroups#!forum/docker-user
+    #python	1433	Don't paste, use https://bpaste.net/+python | http://bit.ly/psf-coc | NO LOL | Tutorial: http://bit.ly/MCAhYx | New programmer? http://goo.gl/c170V | Find your nearest Python User Group: http://goo.gl/S1Zsq | #python-fr #python.de #python-es #python.tw #python.pl #python-br #python-nl #python-ir #python-fi #python.it #python-india #python-dev
+    #freenode	1429	Welcome to #freenode | SASL problems? Use PLAIN - DH-BLOWFISH has been removed | Staff are voiced; some may also be on /stats p -- you can /msg us at any time | FAQ: https://freenode.net/faq.shtml | Channel guidelines: https://freenode.net/poundfreenode.shtml | Blog: https://blog.freenode.net | Please don't comment on spam/trolls.
+    #Node.js	1349	Current Stable v0.10.35, Unstable v0.11.14 | Channel Mission Statement: http://bit.ly/node-irc-mission-statement | Channel Info: http://nodeirc.info | Channel Logs: http://logs.nodejs.org/node.js/index
+
+So that's nice.
