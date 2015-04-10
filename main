@@ -1,9 +1,11 @@
 #!/bin/sh
 
 target=$(date '+%Y-%m-%d')
-mkdir $target
-cd $target
+mkdir -p $target
+[ -e latest ] && rm latest
+ln -s $target latest
 
+cd $target
 exec &> main-log
 
 ../receive &> receive-log
