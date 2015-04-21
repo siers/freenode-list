@@ -10,3 +10,5 @@ exec &> main-log
 
 ../receive &> receive-log
 (cat list | ../filter.rb | ../structure) > formatted 2> structure-log
+
+find . -name '*-log' -size 0 -exec rm {} \;

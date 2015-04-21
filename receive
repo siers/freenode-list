@@ -7,7 +7,7 @@ input() {
 }
 
 kill-children-on-input() {
-    read; pgrep -P $1 | xargs -L1 kill
+    read; pgrep -P $1 | xargs -L1 kill 2> /dev/null
 }
 
 input | sic -h irc.freenode.net -n $nick | tee list | grep --line-buffered "End of /LIST" | kill-children-on-input $$
