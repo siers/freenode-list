@@ -1,0 +1,4 @@
+#!/bin/sh
+
+tty -s < /dev/stdout && echo 'you may add this to crontab: '
+echo "14 * * * * cd $(pwd); ./headless-main"
